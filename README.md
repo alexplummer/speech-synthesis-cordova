@@ -35,6 +35,16 @@ This will copy the files into your `bower_components` folder, along with its dep
 ```html
 <script type="text/javascript" src="bower_components/speech-synthesis-cordova/polyfill.min.js"></script>
 ```
+Add the Media API plugin to your project 
+
+```bash
+$ phone plugin add org.apache.cordova.media
+```
+and make sure you include the `media` plugin in `config.xml` before submitting it to Phonegap build 
+
+```xml
+<gap:plugin name="org.apache.cordova.media" version="0.2.13" />
+```
 
 And finally use speech synthesis inside the `deviceready` event:
 
