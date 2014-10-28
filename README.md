@@ -1,6 +1,9 @@
-# speech-synthesis v0.4.0 [![Build Status](https://travis-ci.org/janantala/speech-synthesis.png?branch=master)](https://travis-ci.org/janantala/speech-synthesis)
+# speech-synthesis-cordova
 
 Speech Synthesis polyfill based on Google Translate service. Polyfill downloads audio from Google Translate server using [CORS](http://caniuse.com/#feat=cors) and plays it using [audio](http://caniuse.com/#feat=audio) element.
+
+### Important
+This module is a fork of the speech-synthesis by @janantala. I have added Corodva's Media API support.
 
 ### Demo
 
@@ -19,7 +22,7 @@ We use [bower](http://twitter.github.com/bower/) for dependency management. Add
 
 ```json
 dependencies: {
-    "speech-synthesis": "latest"
+    "speech-synthesis-cordova": "https://github.com/arvindr21/speech-synthesis-cordova"
 }
 ```
 
@@ -30,12 +33,14 @@ To your `bower.json` file. Then run
 This will copy the files into your `bower_components` folder, along with its dependencies. Load the script files in your application:
 
 ```html
-<script type="text/javascript" src="bower_components/speech-synthesis/polyfill.min.js"></script>
+<script type="text/javascript" src="bower_components/speech-synthesis-cordova/polyfill.min.js"></script>
 ```
 
-And finally use speech synthesis:
+And finally use speech synthesis inside the `deviceready` event:
 
 ```js
+
+document.addEventListener("deviceready", function() {
 // Initialize speech synthesis, we use polyfill only when speech synthesis is not available
 var fallbackSpeechSynthesis = window.getSpeechSynthesis();
 var fallbackSpeechSynthesisUtterance = window.getSpeechSynthesisUtterance();
@@ -50,6 +55,8 @@ u.volume = 1.0;
 u.rate = 1.0;
 u.onend = function(event) { console.log('Finished in ' + event.elapsedTime + ' seconds.'); };
 fallbackSpeechSynthesis.speak(u);
+
+}, false);
 ```
 
 ### CORS proxy server
